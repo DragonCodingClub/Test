@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+                <script type="text/javascript" src="http://code.jquery.com/jquery.min.js">
+                    //There are a number of capabilitie that are provided by the library above called "jquery",
+                    //it will tend to make it a bit easier and faster for us to do things.
+                    // http://www.w3schools.com/jquery/jquery_intro.asp
+                    //everything you can do in jquery you can do in javascript, but, in a different way.
+                    
+                    </script>
+
+        <style>
+            /* body{ background-color: transparent; padding:20px; } */
+            </style>
+        
+        <script>
+            $(function(){
+              
+              // The dollar is just a short cut for a particular grouping of functions, you can treat it just like special character to type when you want to use something from jquery: http://stackoverflow.com/a/10787372
+             
+              //this code immediately below is run when the page loads, it sets some stuff up
+              
+              //This finds the part of the document in the list below. the name "divToPlayWith" is variable, it is like a box you store stuff in (it "varies" by what you store in, hence "varible".
+              var divToPlayWith=$("#divToPlayWith");
+              
+              divToPlayWith.parent().css('position', 'relative');  //needed for silly reasons
+              divToPlayWith.css('position', 'absolute') //force it to be specific positions
+              divToPlayWith.css('top', 0);  //set a new position
+
+           
+              //this sets up another function to handle when something clicks (I called it "handleMouseUp, but as long as the names agree you can call it what you want
+              // you can see more at: http://www.w3schools.com/jsref/met_element_addeventlistener.asp other events are at http://www.w3schools.com/jsref/dom_obj_event.asp
+              //the function is immediately below
+              divToPlayWith[0].addEventListener("mouseup", handleMouseUp);  //the [0] is just a funky way to get back to standard javascript to register the event
+              
+              
+              
+              
+              function handleMouseUp(eventInfo){
+              
+                    //alert("I got to here"); // this is a good way in javascript to figure out if your function is being called during debugging.
+              
+              
+                    //To move some stuff around I found info here: http://stackoverflow.com/a/12745119
+                    var thatDivAgain=$("#divToPlayWith");  //this is the jquery way to get the dom, and lets you do more stuff
+              
+                    var positionOfDivAsString = thatDivAgain.css('top');// get the current top
+                    var positionOfDivAsNumber = parseInt(positionOfDivAsString, 10);
+                    var newTop = positionOfDivAsNumber + 20;  // calculate a new position
+ 
+                    thatDivAgain.css('top', newTop.toString()+"px");  //set a new position
+                }
+              
+              }); // end $(function(){});
+            </script>
+        
+    </head>
+    
+    <body>
+        <div class="container">
+        <div id="divToPlayWith">
+            Hello World; click me
+        </div>
+        </div>
+        
+    </body>
+</html>
